@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\PostRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
+use Illuminate\Support\Str;
 
 /**
  * Class PostCrudController
@@ -74,6 +76,7 @@ class PostCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        Widget::add()->type('script')->content('assets/js/admin/forms/post.js');
         CRUD::setValidation(PostRequest::class);
 
         CRUD::addField([
