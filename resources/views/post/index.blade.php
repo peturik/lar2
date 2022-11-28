@@ -6,7 +6,15 @@
 
 <div class="col-md-8">
   <h3 class="pb-4 mb-4 fst-italic border-bottom">
-    From the Firehose
+    @if (isset($category))
+      {{ $category->title }}
+      @if ($posts->count() <= 0) 
+          <hr>
+          <p>There is not available article yet</p>
+      @endif
+    @else
+      From the Firehose
+    @endif
   </h3>
 
   @if ($posts)
@@ -25,7 +33,7 @@
                 @endif
             <p class="article-body">{!! $post->body !!} </p>
             
-            <span>Category: <a href="#"> {{ $post->category->title }} </a></span>
+            <span>Category: <a href="{{ route('category', ['slug' => $post->category->slug]) }}"> {{ $post->category->title }} </a></span>
             <hr>
         </article>
     @endforeach 

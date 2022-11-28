@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\CategoryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Backpack\CRUD\app\Library\Widget;
 
 /**
  * Class CategoryCrudController
@@ -58,6 +59,7 @@ class CategoryCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        Widget::add()->type('script')->content('assets/js/admin/forms/post.js');
         CRUD::setValidation(CategoryRequest::class);
 
         CRUD::field('title');

@@ -7,13 +7,13 @@
                     <li class="page-item disabled" aria-disabled="true">
                         <span class="btn btn-outline-secondary rounded-pill disabled">
                             {{-- @lang('pagination.previous') --}}
-                            Older
+                            Newer
                         </span>
                     </li>
                 @else
                     <li class="page-item">
                         {{-- <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a> --}}
-                        <a class="btn btn-outline-primary rounded-pill" href="{{ $paginator->previousPageUrl() }}">Older</a>
+                        <a class="btn btn-outline-primary rounded-pill" href="{{ $paginator->previousPageUrl() }}">Newer</a>
                     </li>
                 @endif
 
@@ -22,14 +22,14 @@
                     <li class="page-item">
                         <a class="btn btn-outline-primary rounded-pill" href="{{ $paginator->nextPageUrl() }}" rel="next">
                             {{-- @lang('pagination.next') --}}
-                            Newer
+                            Older
                         </a>
                     </li>
                 @else
                     <li class="page-item disabled" aria-disabled="true">
                         <span class="btn btn-outline-secondary rounded-pill disabled">
                             {{-- @lang('pagination.next') --}}
-                            Newer
+                            Older
                         </span>
                     </li>
                 @endif
