@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    @livewireStyles
     @vite(['resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
     <link href="{{ asset('css/blog.css') }} " rel="stylesheet" />
@@ -42,9 +43,11 @@
                 </ul>
               </li> --}}
             </ul>
-            <form role="search">
+
+            {{-- <form role="search">
               <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            </form>
+            </form> --}}
+
             <ul class="navbar-nav ms-auto">
               <!-- Authentication Links -->
               @guest
@@ -105,5 +108,7 @@
 <footer class="blog-footer">
     <span class="text-muted">Place sticky footer content here.</span>
 </footer>
+
+@livewireScripts
 </body>
 </html>

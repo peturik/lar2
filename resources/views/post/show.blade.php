@@ -26,6 +26,8 @@
         <span>Category: <a href="#"> {{ $post->category->title }} </a></span>
         <hr>
     </article>
+    
+    @livewire('comment')
   
 </div>
 
