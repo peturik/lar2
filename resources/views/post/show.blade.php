@@ -1,7 +1,32 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('title', 'Article')
 
 @section('content')
-    <h1 style="text-align: center">This will be my article</h1>
+
+
+<div class="col-md-8">
+    <h3 class="pb-4 mb-4 fst-italic border-bottom">
+      From the Firehose
+    </h3>
+  
+    <article class="blog-post">
+        <h2 class="blog-post-title mb-1"><a>{{ $post->title }} </a> </h2>
+        <p class="blog-post-meta">
+            <span>
+                {{ $post->created_at->diffForHumans() }}
+                {{-- {{ $post->created_at->toFormattedDateString() }} --}}
+            </span>
+            by {{ $post->user->name }}</p>
+            @if ($post->image)
+                <img class="img-post" src="{{ asset('storage') . '/' . $post->image }}" alt="image">
+            @endif
+        <p>{!! $post->body !!} </p>
+        
+        <span>Category: <a href="#"> {{ $post->category->title }} </a></span>
+        <hr>
+    </article>
+  
+</div>
+
 @endsection

@@ -16,8 +16,10 @@ class PostController extends Controller
 
     public function show($slug)
     {
-        return view('post', [
-            'post' => Post::where('slug', $slug),
+        
+        return view('post.show', [
+            'post' => Post::where('slug', $slug)->first(),
+            // 'user' => User::find($id),
         ]);
     }
 }

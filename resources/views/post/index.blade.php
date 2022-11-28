@@ -3,5 +3,40 @@
 @section('title', 'Blog')
 
 @section('content')
-    <h1 style="text-align: center">This will be my Blog</h1>
+
+<div class="col-md-8">
+  <h3 class="pb-4 mb-4 fst-italic border-bottom">
+    From the Firehose
+  </h3>
+
+  @if ($posts)
+    @foreach ($posts as $post)
+        <article class="blog-post">
+            <h2 class="blog-post-title mb-1"><a href="{{ route('post', $post->slug) }}
+              ">{{ $post->title }} </a> </h2>
+            <p class="blog-post-meta">
+                <span>
+                    {{ $post->created_at->diffForHumans() }}
+                    {{-- {{ $post->created_at->toFormattedDateString() }} --}}
+                </span>
+                by {{ $post->user->name }}</p>
+                @if ($post->image)
+                    <img class="img-post" src="{{ asset('storage') . '/' . $post->image }}" alt="image">
+                @endif
+            <p class="article-body">{!! $post->body !!} </p>
+            
+            <span>Category: <a href="#"> {{ $post->category->title }} </a></span>
+            <hr>
+        </article>
+    @endforeach 
+  @endif
+
+  <nav class="blog-pagination" aria-label="Pagination">
+    <a class="btn btn-outline-primary rounded-pill" href="#">Older</a>
+    <a class="btn btn-outline-secondary rounded-pill disabled">Newer</a>
+  </nav>
+
+</div>
+
+
 @endsection
