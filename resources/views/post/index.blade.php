@@ -31,10 +31,15 @@
             </p>
 
             @if (auth()->user())
-              @if ()
+              @if (auth()->user()->is_admin)
+                <a href="{{ url("/admin/post/{$post->id}/edit") }}">
+                  Update this post
+                </a>
                   
-              @endif
-                Updated
+                  {{-- http://127.0.0.1:8000/admin/post/2/edit --}}
+                  {{-- {{ dd(backpack_user()) }} --}}
+                  @endif
+                
             @endif
 
             @if ($post->image)
