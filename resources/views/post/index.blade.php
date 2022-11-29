@@ -5,17 +5,17 @@
 @section('content')
 
 <div class="col-md-8">
-  <h3 class="pb-4 mb-4 fst-italic border-bottom">
+  
     @if (isset($category))
-      {{ $category->title }}
+      {{ Breadcrumbs::render('category', $category) }}
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">{{ $category->title }}</h3>
       @if ($posts->count() <= 0) 
-          <hr>
-          <p>There is not available article yet</p>
+          <h3 class="pb-4 mb-4 fst-italic text-center"><p>There is not available article yet</p></h3>
       @endif
     @else
-      From the Firehose
-    @endif
-  </h3>
+      {{ Breadcrumbs::render('/') }}
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>
+    @endif  
 
   @if ($posts)
     @foreach ($posts as $post)
@@ -23,17 +23,26 @@
             <h2 class="blog-post-title mb-1"><a href="{{ route('post', $post->slug) }}
               ">{{ $post->title }} </a> </h2>
             <p class="blog-post-meta">
-                <span>
-                    {{ $post->created_at->diffForHumans() }}
-                    {{-- {{ $post->created_at->toFormattedDateString() }} --}}
-                </span>
-                by {{ $post->user->name }}</p>
-                @if ($post->image)
-                    <img class="img-post" src="{{ asset('storage') . '/' . $post->image }}" alt="image">
-                @endif
+              <span>
+                  {{ $post->created_at->diffForHumans() }}
+                  {{-- {{ $post->created_at->toFormattedDateString() }} --}}
+              </span>
+              by {{ $post->user->name }}
+            </p>
+
+            @if (auth()->user())
+              @if ()
+                  
+              @endif
+                Updated
+            @endif
+
+            @if ($post->image)
+                <img class="img-post" src="{{ asset('storage') . '/' . $post->image }}" alt="image">
+            @endif
             <p class="article-body">{!! $post->body !!} </p>
             
-            <span>Category: <a href="{{ route('category', ['slug' => $post->category->slug]) }}"> {{ $post->category->title }} </a></span>
+            <span>Category: <a href="{{ route('category', ['slug' => $post->category->slug]) }}"> {{ $post->category->title }}</a> | Comments: {{ $post->comment->count() }}</span>
             <hr>
         </article>
     @endforeach 
